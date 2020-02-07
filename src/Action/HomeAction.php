@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Action;
 
 use App\Action\Interfaces\HomeActionInterface;
+use App\Entity\Product;
 use App\Responder\Interfaces\HomeResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route(path="/")
@@ -22,6 +24,9 @@ class HomeAction implements HomeActionInterface
 
     public function __invoke()
     {
+    
+        $product = new Product();
+
         return $this->responder->render('home/index.html.twig');
     }
 }
