@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Responder;
+namespace App\Responder\Home;
 
-use App\Responder\Interfaces\HomeResponderInterface;
+use App\Responder\Home\Interfaces\HomeResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 

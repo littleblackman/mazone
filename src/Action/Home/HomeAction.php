@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Action;
+namespace App\Action\Home;
 
-use App\Action\Interfaces\HomeActionInterface;
+use App\Action\Home\Interfaces\HomeActionInterface;
 use App\Entity\Product;
-use App\Responder\Interfaces\HomeResponderInterface;
+use App\Responder\Home\Interfaces\HomeResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route(path="/")
+ * @Route(path="/", name="home")
  */
 class HomeAction implements HomeActionInterface
 {
