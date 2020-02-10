@@ -17,10 +17,10 @@ class HomeResponder implements HomeResponderInterface
         $this->twig = $twig;
     }
 
-    public function render(string $name): Response
+    public function render(string $name, $data): Response
     {
         return new Response(
-            $this->twig->render($name)
+            $this->twig->render($name, $data)
         );
     }
 }

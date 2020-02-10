@@ -69,6 +69,32 @@ class Product
     private $details;
 
 
+    /**
+    * @var ArrayCollection
+    * @ORM\OneToMany(targetEntity="Photo", mappedBy="product", cascade={"persist","remove"}))
+    */
+    private $photos;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="liked", type="integer", nullable=true)
+     */
+    private $liked;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="solded", type="integer", nullable=true)
+     */
+    private $solded;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+    * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+    */
+    private $category;
+
     /**** base entity ****/
 
         /**
@@ -114,14 +140,9 @@ class Product
     protected $isArchived;
 
 
-    /**
-    * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
-    * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
-    */
-    private $category;
-
     public function __construct() {
         $this->details = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
 
@@ -204,6 +225,24 @@ class Product
         return $this;
     }
  
+    public function addPhoto(Photo $photo)
+    {
+        $this->photos[] = $photo;
+        $photo->setProduct($this);
+        return $this;
+    }
+
+    public function removePhoto($photo)
+    {
+        $this->photos->removeElement($photo);
+        return $this;
+    }
+
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
     public function addDetail(Detail $detail)
     {
         $this->details[] = $detail;
@@ -231,6 +270,27 @@ class Product
         return $this->category;
     }
 
+    public function setLiked(?int $like): ?self
+    {
+        $this->liked = $like;
+        return $this;
+    }
+
+    public function getLiked(): ?int
+    {
+        return $this->liked;
+    }
+
+    public function setSolded(?int $solded): ?self
+    {
+        $this->solded = $solded;
+        return $this;
+    }
+
+    public function getSolded(): ?int
+    {
+        return $this->solded;
+    }
 
     /**** base entity methods ****/
 

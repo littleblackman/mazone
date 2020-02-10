@@ -26,9 +26,6 @@ class HomeAction implements HomeActionInterface
     public function __invoke()
     {
         $products = $this->productManager->findBest();
-
-        dd($products);
-
         return $this->responder->render('home/index.html.twig', ['products' => $products]);
     }
 }

@@ -8,5 +8,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface HomeResponderInterface
 {
-    public function render(string $name): Response;
+    public function render(string $name, array $data): Response;
 }
