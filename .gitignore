@@ -8,6 +8,7 @@
 /var/
 /vendor/
 /tests/
+/data/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

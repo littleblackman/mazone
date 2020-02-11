@@ -36,6 +36,25 @@
         {% block cover %}
             {% include 'home/cover.html.twig' %}
         {% endblock %}
+
+        <section>
+		    <div class="container">
+			    <div class="row">
+                    <div class="col-sm-3">
+                        <div class="left-sidebar">
+                            {% block left_side_bar %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 padding-right">
+                            {% block main_container %}
+                            {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        </section>
       
         {% block body %}{% endblock %}
 

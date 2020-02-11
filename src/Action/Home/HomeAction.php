@@ -8,6 +8,7 @@ use App\Action\Home\Interfaces\HomeActionInterface;
 use App\Domain\Model\ProductManager;
 use App\Responder\Home\Interfaces\HomeResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Service\ShopConfigurationService;
 
 
 /**
@@ -17,15 +18,19 @@ class HomeAction implements HomeActionInterface
 {
     private $responder;
 
-    public function __construct(HomeResponderInterface $responder, ProductManager $productManager)
+    public function __construct(HomeResponderInterface $responder, ProductManager $productManager, ShopConfigurationService $shopConfigurationService)
     {
-        $this->productManager = $productManager;
-        $this->responder = $responder;
+        $this->productManager           = $productManager;
+        $this->shopConfigurationService = $shopConfigurationService;
+        $this->responder                = $responder;
     }
 
     public function __invoke()
     {
-        $products = $this->productManager->findBest();
-        return $this->responder->render('home/index.html.twig', ['products' => $products]);
+        $products  = $this->productManager->findBest();
+        $menuItems = $this->shopConfigurationService->getMenuItems();
+        $brands    = $this->shopConfigurationService->getMenuBrands();
+
+        return $this->responder->render('home/index.html.twig', ['products' => $products, 'menuItems' => $menuItems, 'brands' => $brands]);
     }
 }

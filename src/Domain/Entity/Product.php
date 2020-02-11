@@ -3,6 +3,7 @@
 namespace App\Domain\Entity;
 
 use App\Domain\Entity\Detail;
+use App\Domain\Entity\baseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Domain\Repository\ProductRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Product
+class Product extends baseEntity
 {
     /**
      * @ORM\Id()
@@ -36,16 +37,30 @@ class Product
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_fr", type="text", nullable=true)
+     * @ORM\Column(name="description_fr", type="string", lenght=250, nullable=true)
      */
     private $descriptionFr;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_en", type="text", nullable=true)
+     * @ORM\Column(name="description_en", type="string", lenght=250, nullable=true)
      */
     private $descriptionEn;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="information_fr", type="text", nullable=true)
+     */
+    private $informationFr;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="information_en", type="text", nullable=true)
+     */
+    private $informationEn;
 
     /**
      * @var float|null
@@ -145,7 +160,6 @@ class Product
         $this->photos = new ArrayCollection();
     }
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -175,7 +189,6 @@ class Product
         return $this;
     }
 
-
     public function getDescriptionFr(): ?string
     {
         return $this->descriptionFr;
@@ -199,6 +212,31 @@ class Product
 
         return $this;
     }
+
+    public function getInformationFr(): ?string
+    {
+        return $this->informationFr;
+    }
+
+    public function setInformationFr(?string $informationFr): self
+    {
+        $this->informationFr = $informationFr;
+
+        return $this;
+    }
+
+    public function getInformationEn(): ?string
+    {
+        return $this->informationEn;
+    }
+
+    public function setInformationEn(?string $informationEn): self
+    {
+        $this->informationEn = $informationEn;
+
+        return $this;
+    }
+
 
     public function getPrice(): ?float
     {
