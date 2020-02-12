@@ -2,8 +2,6 @@
 
 namespace App\Domain\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class baseEntity
  * Add commons methods to all entities
@@ -12,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class baseEntity
 {
+
     public function getName() {
         return $this->getNameFr();
     }

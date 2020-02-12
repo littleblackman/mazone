@@ -22,6 +22,7 @@ class ProductFixtures extends Fixture implements FixtureGroupInterface
         /*
 DELETE FROM photo;
 DELETE FROM product;
+bin/console doctrine:fixtures:load --append
         */
 
 
@@ -36,6 +37,9 @@ DELETE FROM product;
             $product->setNameEn($data['name_en']);
             $product->setDescriptionFr($data['description_fr']);
             $product->setDescriptionEn($data['description_en']);
+            $product->setInformationFr($data['information_fr']);
+            $product->setInformationEn($data['information_en']);
+            $product->setBrand($data['brand']);
             $product->setPrice($data['price']);
             $product->setDeliveryPrice($data['delivery_price']);
             $product->setCategory($category);
@@ -62,9 +66,11 @@ DELETE FROM product;
 
         $datas = [
                     [
-                        'name_fr' => "Nouvel Apple MacBook Pro (13 pouces, 8Go RAM, 128Go de stockage, Intel Core i5 à 1,4GHz) - Argent",
-                        'name_en' => 'Apple MacBook Air (13-inch, 8GB RAM, 128GB SSD Storage) - Silver',
-                        'description_fr' => 'Processeur Intel iRNUM i5 bicœur de 8e génération à 1, 6 Ghz
+                        'name_fr'        => 'Apple MacBook Pro',
+                        'name_en'        => 'Apple MacBook Pro',
+                        'description_fr' => "Nouvel Apple MacBook Pro (13 pouces, 8Go RAM, 128Go de stockage, Intel Core i5 à 1,4GHz) - Argent",
+                        'description_en' => 'Apple MacBook Air (13-inch, 8GB RAM, 128GB SSD Storage) - Silver',
+                        'information_fr' => 'Processeur Intel iRNUM i5 bicœur de 8e génération à 1, 6 Ghz
                                             Superbe écran retina avec technologie true tone
                                             Toucher et touch id
                                             Intel Iris plus graphics 645
@@ -74,13 +80,14 @@ DELETE FROM product;
                                             Wi‐fi 802.11ac
                                             Tout dernier clavier conçu par Apple
                                             Trackpad force Touch',
-                        'description_en' => '1.8 GHz dual-core Intel Core i5 Processor
+                        'information_en' => '1.8 GHz dual-core Intel Core i5 Processor
                                             Intel HD Graphics 6000
                                             Fast SSD Storage
                                             8GB memory
                                             Two USB 3 ports
                                             Thunderbolt 2 port
                                             Sdxc port',
+                        'brand' => 'Apple',
                         'price' => '1411.55',
                         'delivery_price' => '50',
                         'category_id' => 2,
@@ -88,34 +95,6 @@ DELETE FROM product;
                                         ['url' => 'https://images-na.ssl-images-amazon.com/images/I/51-oeeCf1zL._SL1024_.jpg'],
                                         ['url' => 'https://images-na.ssl-images-amazon.com/images/I/413cU6KK6QL._SL1024_.jpg']
                                     ]
-                        ],
-                        [
-                            'name_fr' => "Nouvel Apple MacBook Pro (13 pouces, 8Go RAM, 128Go de stockage, Intel Core i5 à 1,4GHz) - Argent",
-                            'name_en' => 'Apple MacBook Air (13-inch, 8GB RAM, 128GB SSD Storage) - Silver',
-                            'description_fr' => 'Processeur Intel iRNUM i5 bicœur de 8e génération à 1, 6 Ghz
-                                                Superbe écran retina avec technologie true tone
-                                                Toucher et touch id
-                                                Intel Iris plus graphics 645
-                                                Ssd ultra‑rapide
-                                                Deux ports Thunderbolt 3 (usb‑c)
-                                                Jusqu’à 10 heures d’autonomie
-                                                Wi‐fi 802.11ac
-                                                Tout dernier clavier conçu par Apple
-                                                Trackpad force Touch',
-                            'description_en' => '1.8 GHz dual-core Intel Core i5 Processor
-                                                Intel HD Graphics 6000
-                                                Fast SSD Storage
-                                                8GB memory
-                                                Two USB 3 ports
-                                                Thunderbolt 2 port
-                                                Sdxc port',
-                            'price' => '1411.55',
-                            'delivery_price' => '50',
-                            'category_id' => 2,
-                            'photos' => [
-                                            ['url' => 'https://images-na.ssl-images-amazon.com/images/I/51-oeeCf1zL._SL1024_.jpg'],
-                                            ['url' => 'https://images-na.ssl-images-amazon.com/images/I/413cU6KK6QL._SL1024_.jpg']
-                                        ]
                         ]
         ];
 

@@ -37,14 +37,14 @@ class Product extends baseEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_fr", type="string", lenght=250, nullable=true)
+     * @ORM\Column(name="description_fr", type="text", nullable=true)
      */
     private $descriptionFr;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_en", type="string", lenght=250, nullable=true)
+     * @ORM\Column(name="description_en", type="text", nullable=true)
      */
     private $descriptionEn;
 
@@ -61,6 +61,13 @@ class Product extends baseEntity
      * @ORM\Column(name="information_en", type="text", nullable=true)
      */
     private $informationEn;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="brand", type="string", length=250, nullable=true)
+     */
+    private $brand;
 
     /**
      * @var float|null
@@ -237,6 +244,17 @@ class Product extends baseEntity
         return $this;
     }
 
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?string $brand): self
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
 
     public function getPrice(): ?float
     {

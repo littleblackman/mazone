@@ -6,26 +6,26 @@
         <div class="panel panel-default">
 
 
-            {% for item, subitems in menuItems %}
+            {% for item in menuItems %}
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        {% if subitems is empty %}
-                            <a href="#">{{ item }}</a></h4>
+                        {% if item.childs is empty %}
+                            <a href="#">{{ item.name }}</a></h4>
                         {% else %}
-                            <a data-toggle="collapse" data-parent="#accordian" href="#{{item}}">
+                            <a data-toggle="collapse" data-parent="#accordian" href="#{{item.name}}">
                                 <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                {{ item }}
+                                {{ item.name }}
                             </a>
                         {% endif %}    
                     </h4>
                 </div>
 
-                {% if subitems is not empty %}
-                    <div id="{{item}}" class="panel-collapse collapse">
+                {% if item.childs is not empty %}
+                    <div id="{{item.name}}" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
-                                {% for subitem in subitems %}
-                                    <li><a href="#">{{subitem}}</a></li>
+                                {% for subitem in item.childs %}
+                                    <li><a href="#">{{subitem.name}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -43,8 +43,8 @@
         <h2>Marque</h2>
         <div class="brands-name">
             <ul class="nav nav-pills nav-stacked">
-                {% for brand, quantity in brands %}
-                    <li><a href="#"> <span class="pull-right">({{quantity}})</span> {{brand}}</a></li>
+                {% for brand in brands %}
+                    <li><a href="#"> <span class="pull-right">({{brand.quantity}})</span> {{brand.name}}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -67,9 +67,9 @@
 
 {% block main_container %}
     <div class="features_items"><!--features_items-->
-        <h2 class="title text-center">Les ventes du moments</h2>
+        <h2 class="title text-center">Les meilleurs ventes</h2>
         
-        {% for product in products %}
+        {% for product in bests %}
         
             <div class="col-sm-4">
                 <div class="product-image-wrapper">
@@ -175,7 +175,7 @@
                             <div class="productinfo text-center">
                                 <img src="images/home/gallery4.jpg" alt="" />
                                 <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <p>Blazer Black Edition</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             
@@ -188,7 +188,7 @@
                             <div class="productinfo text-center">
                                 <img src="images/home/gallery3.jpg" alt="" />
                                 <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <p>Balze Polo Black Edition</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             
@@ -201,7 +201,7 @@
                             <div class="productinfo text-center">
                                 <img src="images/home/gallery2.jpg" alt="" />
                                 <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <p>blaze Polo Black Edition</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             
@@ -488,4 +488,3 @@
     </div><!--/recommended_items-->
 					
 {% endblock %}
-

@@ -20,8 +20,13 @@ class ProductManager
         $this->em = $em;
     }
 
-    public function findBest() {
-        $products = $this->em->getRepository(Product::class)->findAll();
+    public function bestSolded($limit) {
+        $products = $this->em->getRepository(Product::class)->findBy([], array('solded' => 'DESC'),$limit);
         return $products;
+    }
+
+    public function getBrandsArray() {
+        $results = $this->em->getRepository(Product::class)->getBrandsArray();
+        return $results;
     }
 }

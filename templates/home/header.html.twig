@@ -85,15 +85,16 @@
 						<li><a href="{{ path('home')}}" class="active">{% trans %}home{% endtrans %}</a></li>
 						<li class="dropdown"><a href="#">{% trans %}shop{% endtrans %}<i class="fa fa-angle-down"></i></a>
 							<ul role="menu" class="sub-menu">
-								<li><a href="shop.html">{% trans %}electronic{% endtrans %}</a></li>
-								<li><a href="product-details.html">{% trans %}house{% endtrans %}</a></li> 
-								<li><a href="checkout.html">{% trans %}clothe{% endtrans %}</a></li> 
+
+								{% for item in menuItems %}
+									<li><a href="product-details.html">{{item.name}}</a></li> 
+								{% endfor %} 
 							</ul>
 						</li> 
 						<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
 							<ul role="menu" class="sub-menu">
-								<li><a href="blog.html">Les produits phares</a></li>
-								<li><a href="blog-single.html">Une nouvelle saison</a></li>
+								<li><a href="blog.html">Autour de vous</a></li>
+								<li><a href="blog-single.html">Les produits à venir</a></li>
 							</ul>
 						</li> 
 						<li><a href="contact-us.html">Contact</a></li>

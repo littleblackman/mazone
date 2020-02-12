@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity(repositoryClass="App\Domain\Repository\CategoryRepository")
  */
-class Category
+class Category extends baseEntity
 {
     /**
      * @ORM\Id()
@@ -58,6 +58,12 @@ class Category
     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
     */
     private $parent;
+
+    /**
+    * @var ArrayCollection
+    */
+    private $childs;
+
 
     public function __construct() {
         $this->products = new ArrayCollection();
@@ -133,6 +139,14 @@ class Category
 
     public function getParent() {
         return $this->parent;
+    }
+
+    public function setChilds($subcategories) {
+        $this->childs = $subcategories;
+    }
+
+    public function getChilds() {
+        return $this->childs;
     }
 
 

@@ -6,6 +6,7 @@ namespace App\Action\Home;
 
 use App\Action\Home\Interfaces\HomeActionInterface;
 use App\Domain\Model\ProductManager;
+use App\Domain\Model\CategoryManager;
 use App\Responder\Home\Interfaces\HomeResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Service\ShopConfigurationService;
@@ -18,19 +19,20 @@ class HomeAction implements HomeActionInterface
 {
     private $responder;
 
-    public function __construct(HomeResponderInterface $responder, ProductManager $productManager, ShopConfigurationService $shopConfigurationService)
+    public function __construct(HomeResponderInterface $responder, ProductManager $productManager, CategoryManager $categoryManager, ShopConfigurationService $shopConfigurationService)
     {
         $this->productManager           = $productManager;
         $this->shopConfigurationService = $shopConfigurationService;
         $this->responder                = $responder;
+        $this->categoryManager          = $categoryManager;
     }
 
     public function __invoke()
     {
-        $products  = $this->productManager->findBest();
-        $menuItems = $this->shopConfigurationService->getMenuItems();
-        $brands    = $this->shopConfigurationService->getMenuBrands();
+        $bests     = $this->productManager->bestSolded(6);
+        $brands    = $this->productManager->getBrandsArray();
+        $menuItems = $this->categoryManager->getMenuItems();
 
-        return $this->responder->render('home/index.html.twig', ['products' => $products, 'menuItems' => $menuItems, 'brands' => $brands]);
+        return $this->responder->render('home/index.html.twig', ['bests' => $bests, 'menuItems' => $menuItems, 'brands' => $brands]);
     }
 }
