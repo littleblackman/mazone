@@ -35,6 +35,13 @@ class Category extends baseEntity
     /**
      * @var string|null
      *
+     * @ORM\Column(name="constant_key", type="string", length=250, nullable=true)
+     */
+    private $constantKey;
+
+    /**
+     * @var string|null
+     *
      * @ORM\Column(name="description_fr", type="string", nullable=true)
      */
     private $descriptionFr;
@@ -85,6 +92,19 @@ class Category extends baseEntity
 
         return $this;
     }
+
+    public function getConstantKey(): ?string
+    {
+        return $this->constantKey;
+    }
+
+    public function setConstantKey(?string $constantKey): self
+    {
+        $this->constantKey = $constantKey;
+
+        return $this;
+    }
+
 
     public function getNameEn(): ?string
     {

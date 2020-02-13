@@ -29,10 +29,21 @@ class HomeAction implements HomeActionInterface
 
     public function __invoke()
     {
-        $bests     = $this->productManager->bestSolded(6);
-        $brands    = $this->productManager->getBrandsArray();
-        $menuItems = $this->categoryManager->getMenuItems();
+        $bests           = $this->productManager->getBestSolded(6);
+        $brands          = $this->productManager->getBrandsArray();
+        $menuItems       = $this->categoryManager->getMenuItems();
+        $topCategory     = $this->categoryManager->getCategoryByConstantKey('CLOTHES', true, 'id');
+        $topProducts     = $this->productManager->getBestSoldedBySubCategory($topCategory);
+        $topLikeProducts = $this->productManager->getBestLikedProducts();
 
-        return $this->responder->render('home/index.html.twig', ['bests' => $bests, 'menuItems' => $menuItems, 'brands' => $brands]);
+
+        return $this->responder->render('home/index.html.twig', [
+                                                                    'bests'           => $bests,
+                                                                    'menuItems'       => $menuItems,
+                                                                    'brands'          => $brands,
+                                                                    'topCategory'     => $topCategory,
+                                                                    'topProducts'     => $topProducts,
+                                                                    'topLikeProducts' => $topLikeProducts
+                                                                ]);
     }
 }

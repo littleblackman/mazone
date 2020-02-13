@@ -20,7 +20,7 @@ class ProductManager
         $this->em = $em;
     }
 
-    public function bestSolded($limit) {
+    public function getBestSolded($limit) {
         $products = $this->em->getRepository(Product::class)->findBy([], array('solded' => 'DESC'),$limit);
         return $products;
     }
@@ -29,4 +29,20 @@ class ProductManager
         $results = $this->em->getRepository(Product::class)->getBrandsArray();
         return $results;
     }
+
+    public function getBestSoldedBySubCategory($category, $limit = 4) {
+        if(!$category->getChilds()) return null;
+        foreach($category->getChilds() as $cat) {
+            $products = $this->em->getRepository(Product::class)->findBy(['category' => $cat], array('solded' => 'DESC'), $limit);
+            $datas[$cat->getName()] = $products;
+        }
+        return $datas;
+    }
+
+    public function getBestLikedProducts($limit = 6) {
+        $products = $this->em->getRepository(Product::class)->findBy([], array('liked' => 'DESC'), $limit);
+        return $products;
+
+    }
+
 }

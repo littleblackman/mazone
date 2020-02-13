@@ -77,13 +77,6 @@ class Product extends baseEntity
     private $price;
 
     /**
-     * @var float|null
-     *
-     * @ORM\Column(name="delivery_price", type="float", nullable=true)
-     */
-    private $deliveryPrice;
-
-    /**
     * @var ArrayCollection
     * @ORM\OneToMany(targetEntity="Detail", mappedBy="product", cascade={"remove"}))
     * @ORM\OrderBy({"nameFr" = "ASC"})
@@ -116,6 +109,13 @@ class Product extends baseEntity
     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
     */
     private $category;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="slug", type="string", length=250, nullable=true)
+     */
+    private $slug;
 
     /**** base entity ****/
 
@@ -267,19 +267,6 @@ class Product extends baseEntity
 
         return $this;
     }
-
-
-    public function getDeliveryPrice(): ?float
-    {
-        return $this->deliveryPrice;
-    }
-
-    public function setDeliveryPrice(?float $deliveryPrice): self
-    {
-        $this->deliveryPrice = $deliveryPrice;
-
-        return $this;
-    }
  
     public function addPhoto(Photo $photo)
     {
@@ -297,6 +284,20 @@ class Product extends baseEntity
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    public function getFirstPhoto() {
+        return $this->photos[0];
+    }
+
+    public function getFirstPhotoUrl() {
+        $firstPhoto = $this->getFirstPhoto();
+        return $firstPhoto->getUrl();
+    }
+
+    public function getFirstPhotoAlt() {
+        $firstPhoto = $this->getFirstPhoto();
+        return $firstPhoto->getAlt();
     }
 
     public function addDetail(Detail $detail)
@@ -347,6 +348,19 @@ class Product extends baseEntity
     {
         return $this->solded;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
 
     /**** base entity methods ****/
 

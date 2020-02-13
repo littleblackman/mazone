@@ -26,8 +26,9 @@ class ProductRepository extends ServiceEntityRepository
     {
         return  $this->createQueryBuilder('p')
                 ->select('count(p.brand) AS quantity, p.brand as name')
-                ->orderBy('p.brand', 'ASC')
+                ->orderBy('quantity', 'DESC')
                 ->groupBy('p.brand')
+                ->setMaxResults(6)
                 ->getQuery()
                 ->getResult();       
         

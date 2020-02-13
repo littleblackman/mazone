@@ -3,11 +3,13 @@
 namespace App\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Domain\Entity\baseEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Domain\Repository\PhotoRepository")
  */
-class Photo
+class Photo extends baseEntity
 {
     /**
      * @ORM\Id()
@@ -129,6 +131,10 @@ class Photo
 
     public function getProdcut() {
         return $this->product;
+    }
+
+    public function getAlt() {
+        return $this->getName();
     }
 
 }
