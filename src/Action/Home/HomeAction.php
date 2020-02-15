@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Action\Home;
 
 use App\Action\Home\Interfaces\HomeActionInterface;
+use App\Responder\Home\Interfaces\HomeResponderInterface;
 use App\Domain\Model\ProductManager;
 use App\Domain\Model\CategoryManager;
-use App\Responder\Home\Interfaces\HomeResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Service\ShopConfigurationService;
 

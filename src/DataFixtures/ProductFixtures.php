@@ -12,6 +12,8 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 class ProductFixtures extends Fixture implements FixtureGroupInterface
 {
+
+
     public static function getGroups(): array
     {
              return ['product'];
@@ -31,6 +33,8 @@ bin/console doctrine:fixtures:load --append
         foreach($datas as $data) {
 
             $category = $manager->getRepository(Category::class)->find($data['category_id']);
+    
+            $slug = $this->createSlug($manager, $data['name_fr'].'-'.$data['brand']);
 
             $product = new Product();
             $product->setNameFr($data['name_fr']);
@@ -39,6 +43,7 @@ bin/console doctrine:fixtures:load --append
            // $product->setDescriptionEn($data['description_en']);
             $product->setInformationFr($data['information_fr']);
            // $product->setInformationEn($data['information_en']);
+            $product->setSlug($slug);
             $product->setBrand($data['brand']);
             $product->setPrice($data['price']);
             $product->setCategory($category);
@@ -56,8 +61,37 @@ bin/console doctrine:fixtures:load --append
             }
             
             $manager->persist($product);
+            $manager->flush();
         }
-        $manager->flush();
+       
+    }
+
+    public function createSlug($manager, $name) {
+
+        $slug_name = str_replace([' ', ',', "'"], ['-', '-', '-'], $name);
+        $slug_name = strtolower(
+                            str_replace(
+                                ['é', 'è', 'ê', 'ï', 'î','ë', 'à', 'ô', 'ö', 'â'],
+                                ['e', 'e', 'e', 'i', 'i', 'e', 'a', 'o', 'o', 'a'],
+                                $slug_name
+        ));
+
+        $i = 0;
+
+        $original_name = $slug_name;
+
+        if($product = $manager->getRepository(Product::class)->findOneBy(['slug' => $slug_name])) {
+
+            $slug_product = $product->getSlug();
+            while($slug_name == $slug_product) {
+                $i++;
+                $slug_name = $original_name.'-'.$i;
+                $product = $manager->getRepository(Product::class)->findOneBy(['slug' => $slug_name]);
+                ($product) ? $slug_product = $product->getSlug() : $slug_product = "";
+            }
+        }
+
+        return $slug_name;
     }
 
     public function getDatas() {
