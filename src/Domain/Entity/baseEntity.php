@@ -15,4 +15,8 @@ class baseEntity
         return $this->getNameFr();
     }
 
+    public function getDescription() {
+        return $this->getDescriptionFr();
+    }
+
 }

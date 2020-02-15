@@ -1,0 +1,60 @@
+<h2>Categorie</h2>
+<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+    <div class="panel panel-default">
+
+
+        {% for item in config.menuItems %}
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    {% if item.childs is empty %}
+                        <a href="#">{{ item.name }}</a></h4>
+                    {% else %}
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{item.name}}">
+                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                            {{ item.name }}
+                        </a>
+                    {% endif %}    
+                </h4>
+            </div>
+
+            {% if item.childs is not empty %}
+                <div id="{{item.name}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul>
+                            {% for subitem in item.childs %}
+                                <li><a href="#">{{subitem.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+
+
+        {% endfor %}
+
+        
+    </div>
+</div><!--/category-products-->
+
+<div class="brands_products"><!--brands_products-->
+    <h2>Marque</h2>
+    <div class="brands-name">
+        <ul class="nav nav-pills nav-stacked">
+            {% for brand in config.brands %}
+                <li><a href="#"> <span class="pull-right">({{brand.quantity}})</span> {{brand.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div><!--/brands_products-->
+
+<div class="price-range"><!--price-range-->
+    <h2>Prix</h2>
+    <div class="well text-center">
+            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+            <b class="pull-left">0 €</b> <b class="pull-right">600 €</b>
+    </div>
+</div><!--/price-range-->
+
+<div class="shipping text-center"><!--shipping-->
+    <img src="{{ asset('eshopper/images/home/shipping.jpg') }}" alt="" />
+</div><!--/shipping-->

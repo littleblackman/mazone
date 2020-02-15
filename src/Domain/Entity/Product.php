@@ -117,6 +117,28 @@ class Product extends baseEntity
      */
     private $slug;
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="availability", type="integer", nullable=true)
+     */
+    private $availability;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="availability", type="string", length=250, nullable=true)
+     */
+    private $quantity;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="availability", type="string", length=250, nullable=true)
+     */
+    private $condition;
+
+
     /**** base entity ****/
 
         /**
@@ -360,6 +382,42 @@ class Product extends baseEntity
 
         return $this;
     }
+
+    public function getAvailability(): ?string
+    {
+        return $this->availability;
+    }
+
+    public function setAvailability(?string $availability): self
+    {
+        $this->availability = $availability;
+
+        return $this;
+    }
+
+    public function getCondition(): ?string
+    {
+        return $this->condition;
+    }
+
+    public function setCondition(?string $condition): self
+    {
+        $this->condition = $condition;
+
+        return $this;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;   
+    }
+
+    public function setQuantity(?int $quantity): self
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
+
 
 
     /**** base entity methods ****/

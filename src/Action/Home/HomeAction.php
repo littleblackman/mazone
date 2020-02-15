@@ -18,32 +18,25 @@ use App\Domain\Service\ShopConfigurationService;
 class HomeAction implements HomeActionInterface
 {
     private $responder;
+    private $shopConfigurationService;
+    private $productManager;
 
-    public function __construct(HomeResponderInterface $responder, ProductManager $productManager, CategoryManager $categoryManager, ShopConfigurationService $shopConfigurationService)
+    public function __construct(HomeResponderInterface $responder, ProductManager $productManager, ShopConfigurationService $shopConfigurationService)
     {
         $this->productManager           = $productManager;
         $this->shopConfigurationService = $shopConfigurationService;
         $this->responder                = $responder;
-        $this->categoryManager          = $categoryManager;
     }
 
     public function __invoke()
     {
-        $bests           = $this->productManager->getBestSolded(6);
-        $brands          = $this->productManager->getBrandsArray();
-        $menuItems       = $this->categoryManager->getMenuItems();
-        $topCategory     = $this->categoryManager->getCategoryByConstantKey('CLOTHES', true, 'id');
-        $topProducts     = $this->productManager->getBestSoldedBySubCategory($topCategory);
-        $topLikeProducts = $this->productManager->getBestLikedProducts();
 
-
+        $config = $this->shopConfigurationService->retrieveMenuElements();
+        $bests  = $this->productManager->getBestSolded(6);
+     
         return $this->responder->render('home/index.html.twig', [
-                                                                    'bests'           => $bests,
-                                                                    'menuItems'       => $menuItems,
-                                                                    'brands'          => $brands,
-                                                                    'topCategory'     => $topCategory,
-                                                                    'topProducts'     => $topProducts,
-                                                                    'topLikeProducts' => $topLikeProducts
+                                                                    'bests'  => $bests,
+                                                                    'config' => $config
                                                                 ]);
     }
 }

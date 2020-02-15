@@ -43,6 +43,7 @@
                     <div class="col-sm-3">
                         <div class="left-sidebar">
                             {% block left_side_bar %}
+                                {% include 'home/sidebar.html.twig' %}
                             {% endblock %}
                         </div>
                     </div>
@@ -56,8 +57,6 @@
             </div>
         </section>
       
-        {% block body %}{% endblock %}
-
         {% block footer %}
             {% include 'home/footer.html.twig' %}
         {% endblock %}
