@@ -19,4 +19,7 @@ class baseEntity
         return $this->getDescriptionFr();
     }
 
+    public function getInformation() {
+        return $this->getInformationFr();
+    }
 }

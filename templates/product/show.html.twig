@@ -8,27 +8,27 @@
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
                 <div class="view-product">
-                    <img src="{{ asset('eshopper/images/product-details/1.jpg')}}" alt="" />
+                    <img src="{{ product.firstPhotoUrl }}" alt="" />
                     <h3>ZOOM</h3>
                 </div>
                 <div id="similar-product" class="carousel slide" data-ride="carousel">
                     
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar1.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar2.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar3.jpg')}}" alt=""></a>
+                            <div class="item active product-details-img">
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
                             </div>
-                            <div class="item">
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar1.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar2.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar3.jpg')}}" alt=""></a>
+                            <div class="item product-details-img">
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
                             </div>
-                            <div class="item">
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar1.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar2.jpg')}}" alt=""></a>
-                                <a href=""><img src="{{ asset('eshopper/images/product-details/similar3.jpg')}}" alt=""></a>
+                            <div class="item product-details-img">
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
+                                <a href=""><img src="{{ product.firstPhotoUrl }}" width="60" alt=""></a>
                             </div>
                             
                         </div>
@@ -45,22 +45,22 @@
             </div>
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
-                    <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                    <img src="{{ asset('eshopper/images/product-details/new.jpg')}}" class="newarrival" alt="" />
                     <h2>{{ product.name }}</h2>
                     <p>{{ product.description }}</p>
                     <img src="images/product-details/rating.png" alt="" />
                     <span>
                         <span>{{ product.price}} €</span>
-                        <label>Quantity:</label>
+                        <label>Quantité:</label>
                         <input type="text" value="1" />
                         <button type="button" class="btn btn-fefault cart">
                             <i class="fa fa-shopping-cart"></i>
-                            Add to cart
+                            Ajouter au panier
                         </button>
                     </span>
-                    <p><b>Disponibilité:</b> In Stock</p>
-                    <p><b>Condition:</b> New</p>
-                    <p><b>Brand:</b> E-SHOPPER</p>
+                    <p><b>Disponibilité:</b> {{ product.availability|trans}}</p>
+                    <p><b>Condition:</b> {{product.quality|trans}}</p>
+                    <p><b>Brand:</b> {{product.brand}}</p>
                     <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                 </div><!--/product-information-->
             </div>
@@ -69,23 +69,19 @@
 
 		<div class="tab-pane fade active in" id="reviews" >
             <div class="col-sm-12">
-                <ul>
-                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p><b>Write Your Review</b></p>
+                <b>Plus d'informations :</b>
+                <p>{{product.information}}</p>
+                <p><b>Ecrivez un commentaire</b></p>
                 
                 <form action="#">
                     <span>
-                        <input type="text" placeholder="Your Name"/>
-                        <input type="email" placeholder="Email Address"/>
+                        <input type="text" placeholder="Votre nom"/>
+                        <input type="email" placeholder="Adresse email"/>
                     </span>
                     <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+                    <b>Note: </b> {{ product.showIconRate|raw }}
                     <button type="button" class="btn btn-default pull-right">
-                        Submit
+                        Envoyez
                     </button>
                 </form>
             </div>

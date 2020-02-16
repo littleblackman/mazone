@@ -49,6 +49,10 @@ bin/console doctrine:fixtures:load --append
             $product->setCategory($category);
             $product->setLiked(rand(1,1000));
             $product->setSolded(rand(1,100));
+            $product->setAvailability('IN_STOCK');
+            $product->setQuality('NEW');
+            $product->setQuantity(rand(10,60));
+            $product->setRate(rand(4,5));
 
             if($data['photos']) {
                 foreach($data['photos'] as $d) {

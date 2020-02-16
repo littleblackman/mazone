@@ -120,23 +120,30 @@ class Product extends baseEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="availability", type="integer", nullable=true)
+     * @ORM\Column(name="availability", type="string", length=250, nullable=true)
      */
     private $availability;
 
     /**
-     * @var string|null
+     * @var int|null
      *
-     * @ORM\Column(name="availability", type="string", length=250, nullable=true)
+     * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="rate", type="integer", nullable=true)
+     */
+    private $rate;
+
+    /**
      * @var string|null
      *
-     * @ORM\Column(name="availability", type="string", length=250, nullable=true)
+     * @ORM\Column(name="quality", type="string", length=250, nullable=true)
      */
-    private $condition;
+    private $quality;
 
 
     /**** base entity ****/
@@ -395,14 +402,14 @@ class Product extends baseEntity
         return $this;
     }
 
-    public function getCondition(): ?string
+    public function getQuality(): ?string
     {
-        return $this->condition;
+        return $this->quality;
     }
 
-    public function setCondition(?string $condition): self
+    public function setQuality(?string $quality): self
     {
-        $this->condition = $condition;
+        $this->quality = $quality;
 
         return $this;
     }
@@ -418,6 +425,28 @@ class Product extends baseEntity
         return $this;
     }
 
+    public function getRate(): int
+    {
+        return $this->rate;   
+    }
+
+    public function setRate(?int $rate): self
+    {
+        $this->rate = $rate;
+        return $this;
+    }
+
+    public function showIconRate() {
+        $html = "";
+        for($i = 0; $i < 5; $i++) {
+            if($i >= $this->getRate()) {
+                $html .='<i class="far fa-star"></i>';
+            } else {
+                $html .= '<i class="fas fa-star"></i>';
+            }
+        } 
+        return $html;
+    }
 
 
     /**** base entity methods ****/
