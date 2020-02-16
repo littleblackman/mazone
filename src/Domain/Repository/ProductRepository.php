@@ -33,4 +33,14 @@ class ProductRepository extends ServiceEntityRepository
                 ->getResult();       
         
     }
+
+    public function findByCategorySlug($category_slug_name) {
+        return $this->createQueryBuilder('p')
+        ->leftJoin('p.category', 'c')
+        ->where('c.slug = :slug')
+        ->orderBy('p.liked', 'DESC')
+        ->setParameter('slug', $category_slug_name)
+        ->getQuery()
+        ->getResult();
+    }
 }

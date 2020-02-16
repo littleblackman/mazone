@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Responder\Product;
+namespace App\Responder\Category;
 
-use App\Responder\Product\Interfaces\ProductShowResponderInterface;
+use App\Responder\Category\Interfaces\ListResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ProductShowResponder implements ProductShowResponderInterface
+class ListResponder implements ListResponderInterface
 {
     private $twig;
 

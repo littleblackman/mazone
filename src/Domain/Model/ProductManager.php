@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Model;
 
 use App\Domain\Entity\Product;
+use App\Domain\Model\CategoryManager;
 use App\Domain\Model\baseModelManager;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -18,9 +19,10 @@ class ProductManager extends baseModelManager
     private $em;
     private $productRepository;
 
-    public function __construct(EntityManagerInterface $em) {
+    public function __construct(EntityManagerInterface $em, CategoryManager $categoryManager) {
         $this->em = $em;
         $this->productRepository = $this->em->getRepository(Product::class);
+        $this->categoryManager = $categoryManager;
     }
 
     public function getManagerRepository() {
@@ -44,6 +46,23 @@ class ProductManager extends baseModelManager
             $datas[$cat->getName()] = $products;
         }
         return $datas;
+    }
+
+    public function findByCategorySlug($category_slug_name) {
+
+        $category = $this->categoryManager->getCategoryBySlug($category_slug_name);
+        $products = $this->getManagerRepository()->findBy(['category' => $category]);
+
+        if(!$subcats = $category->getChilds()) return $products;
+
+        foreach($subcats as $subcat) {
+            $productsArray= $this->getManagerRepository()->findBy(['category' => $subcat]);
+            foreach($productsArray as $pdt) {
+                $products[] = $pdt;
+            }
+        }
+
+        return $products;
     }
 
     public function findBySlug($slug) {

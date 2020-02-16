@@ -22,7 +22,7 @@
                     <div class="panel-body">
                         <ul>
                             {% for subitem in item.childs %}
-                                <li><a href="#">{{subitem.name}}</a></li>
+                                <li><a href="{{ path('listCategory', {slug: subitem.slug})}}">{{subitem.name}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
