@@ -8,7 +8,7 @@ namespace App\Domain\Entity;
  *
  * @package App\Domain\Entity
  */
-class baseEntity
+abstract class baseEntity
 {
 
     public function getName() {
@@ -22,4 +22,5 @@ class baseEntity
     public function getInformation() {
         return $this->getInformationFr();
     }
+
 }

@@ -71,6 +71,13 @@ class Category extends baseEntity
     */
     private $childs;
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="slug", type="string", length=250, nullable=true)
+     */
+    private $slug;
+
 
     public function __construct() {
         $this->products = new ArrayCollection();
@@ -168,6 +175,19 @@ class Category extends baseEntity
     public function getChilds() {
         return $this->childs;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
 
 
 }

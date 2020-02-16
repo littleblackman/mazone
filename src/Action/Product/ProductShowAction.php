@@ -32,7 +32,6 @@ class ProductShowAction implements ProductShowActionInterface
         $product = $this->productManager->findBySlug($slug);
         $config = $this->shopConfigurationService->retrieveMenuElements();
         
-
         return $this->responder->render('product/show.html.twig', [
                                                                    'product' => $product,
                                                                    'config'  => $config

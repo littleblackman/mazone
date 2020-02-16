@@ -6,20 +6,26 @@ namespace App\Domain\Model;
 
 use App\Domain\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Model\baseModelManagers;
 
 /**
  * Class used to manager Product
  * 
  */
-class CategoryManager
+class CategoryManager extends baseModelManager
 {
 
     private $em;
+    private $categoryRepository;
 
     public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
+        $this->categoryRepository = $this->em->getRepository(Category::class);
     }
 
+    public function getManagerRepository() {
+        return $this->categoryRepository;
+    }
     public function getMenuItems() {
         $categories = $this->em->getRepository(Category::class)->findBy(['parent' => null], array('nameFr' => 'ASC'));
 

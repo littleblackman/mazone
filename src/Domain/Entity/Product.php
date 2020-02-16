@@ -145,6 +145,12 @@ class Product extends baseEntity
      */
     private $quality;
 
+    /**
+     * @var array|null
+     *
+     */
+    private $breadcrumb;
+
 
     /**** base entity ****/
 
@@ -194,6 +200,7 @@ class Product extends baseEntity
     public function __construct() {
         $this->details = new ArrayCollection();
         $this->photos = new ArrayCollection();
+        $this->createBreadcrumb();
     }
 
     public function getId(): ?int
@@ -446,6 +453,34 @@ class Product extends baseEntity
             }
         } 
         return $html;
+    }
+
+    public function setBreadcrumb($breadcrumb) {
+        $this->breadcrumb = $breadcrumb;
+        return $this;
+    }
+
+    public function getBreadcrumb() {
+        if(!$this->breadcrumb) $this->createBreadcrumb();
+        return $this->breadcrumb;
+    }
+
+    public function createBreadcrumb() {
+        
+        if(!$category = $this->getCategory()) return null;
+
+        $category = $this->getCategory();
+
+        $breadcrumbArray[] = $category->getName();
+        while($new_category = $category->getParent()) {
+            $breadcrumbArray[] = $new_category->getName();
+            $category = $new_category;
+        }
+
+        $breadcrumbArray = array_reverse($breadcrumbArray);
+
+        $this->setBreadcrumb($breadcrumbArray);
+
     }
 
 
