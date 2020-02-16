@@ -444,7 +444,7 @@ class Product extends baseEntity
     }
 
     public function showIconRate() {
-        $html = "";
+        $html = "<span class='iconRate'>";
         for($i = 0; $i < 5; $i++) {
             if($i >= $this->getRate()) {
                 $html .='<i class="far fa-star"></i>';
@@ -452,6 +452,7 @@ class Product extends baseEntity
                 $html .= '<i class="fas fa-star"></i>';
             }
         } 
+        $html .= "</span>";
         return $html;
     }
 
