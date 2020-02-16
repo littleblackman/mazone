@@ -487,6 +487,14 @@ class Product extends baseEntity
 
     /**** base entity methods ****/
 
+    public function toArray() {
+ 
+        $objectArray = get_object_vars($this);
+
+        return $objectArray;
+        
+    }
+
 
     /**
      * Set createdAt

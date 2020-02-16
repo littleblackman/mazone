@@ -48,6 +48,10 @@ class ProductManager extends baseModelManager
         return $datas;
     }
 
+    public function find($productId) {
+        return $this->productRepository->find($productId);
+    }
+
     public function findByCategorySlug($category_slug_name) {
 
         $category = $this->categoryManager->getCategoryBySlug($category_slug_name);

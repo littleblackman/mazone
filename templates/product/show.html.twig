@@ -65,7 +65,7 @@
                         <span>{{ product.price}} €</span>
                         <label>Quantité:</label>
                         <input type="text" value="1" />
-                        <button type="button" data-productId = "{{ product.id}}" class="btn btn-fefault cart addToCart">
+                        <button type="button" data-url = "{{ path('addToCart', {'productId' : product.id})}}" class="btn btn-fefault cart addToCart">
                             <i class="fa fa-shopping-cart"></i>
                             {{ "addCart"|trans}}
                         </button>

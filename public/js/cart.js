@@ -1,7 +1,14 @@
 $('.addToCart').click(function() {
-    let productId = $(this).attr('data-productId');
+    let url = $(this).attr('data-url');
     
+    $.ajax({
+        url: url,
+        success: function(result){
 
-    toastr.success('Hé, <b>ça marche ! '+productId+'</b>', 'Test');
+//            let data = JSON.parse(result);
+            console.log(result);
+            toastr.success('hello', 'Panier');
+        }
+    });
 
 })
