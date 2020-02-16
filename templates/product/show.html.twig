@@ -4,7 +4,17 @@
 
 {% block main_container %}
 
-    <h2>hello {{ dump(product.breadcrumb) }}</h2>
+    <nav>
+        <ul class="breadcrumb">
+            {% for slug, menu in product.breadcrumb %}
+                <li>
+                    <a href="#">
+                        {{ menu }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
 
     <div class="col-sm-12 padding-right">
         <div class="product-details"><!--product-details-->

@@ -471,9 +471,9 @@ class Product extends baseEntity
 
         $category = $this->getCategory();
 
-        $breadcrumbArray[] = $category->getName();
+        $breadcrumbArray[$category->getSlug()] = $category->getName();
         while($new_category = $category->getParent()) {
-            $breadcrumbArray[] = $new_category->getName();
+            $breadcrumbArray[$new_category->getSlug()] = $new_category->getName();
             $category = $new_category;
         }
 
