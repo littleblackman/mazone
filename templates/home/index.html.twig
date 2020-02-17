@@ -14,7 +14,9 @@
                                 <h2>{{ product.price}}</h2>
                                 <p>{{ product.name }}</p>
                         
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ "addCart"|trans}}</a>
+                                <a href="#" class="btn btn-default add-to-cart addToCart" data-url = "{{ path('addToCart', {'productId' : product.id})}}">
+                                    <i class="fa fa-shopping-cart"></i>{{ "addCart"|trans}}
+                                </a>
                             </div>
                             <div class="product-overlay">
                                 <div class="overlay-content productinfo">
@@ -23,7 +25,9 @@
                                         <h2>{{ product.price}}</h2>
                                         <p>{{ product.name }}</p>
                                     </a>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ "addCart"|trans}}</a>
+                                    <a href="#" class="btn btn-default add-to-cart addToCart" data-url = "{{ path('addToCart', {'productId' : product.id})}}">
+                                        <i class="fa fa-shopping-cart"></i>{{ "addCart"|trans}}
+                                    </a>
                                 </div>
                             </div>
                     </div>
@@ -117,4 +121,8 @@
         </div>
     </div><!--/recommended_items-->
 					
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{ asset('js/cart.js') }}"></script>
 {% endblock %}

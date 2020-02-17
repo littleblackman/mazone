@@ -1,4 +1,7 @@
-$('.addToCart').click(function() {
+$('.addToCart').click(function(e) {
+
+    e.preventDefault();
+
     let url = $(this).attr('data-url');
     
     $.ajax({
