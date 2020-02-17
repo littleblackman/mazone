@@ -6,6 +6,7 @@ namespace App\Domain\Service;
 
 use App\Domain\Model\CategoryManager;
 use App\Domain\Model\ProductManager;
+use App\Domain\Service\CartManagerService;
 
 /**
  * Class used to manager all the shop application
@@ -16,10 +17,12 @@ class ShopConfigurationService
 
     private $productManager;
     private $categoryManager;
+    private $cartManagerService;
 
-    public function __construct(ProductManager $productManager, CategoryManager $categoryManager) {
+    public function __construct(ProductManager $productManager, CategoryManager $categoryManager, CartManagerService $cartManagerService) {
         $this->productManager = $productManager;
         $this->categoryManager = $categoryManager;
+        $this->cartManagerService = $cartManagerService;
     }
 
 
@@ -29,6 +32,7 @@ class ShopConfigurationService
         $elements['topCategory']     = $this->categoryManager->getCategoryByConstantKey('CLOTHES', true, 'id');
         $elements['topProducts']     = $this->productManager->getBestSoldedBySubCategory($elements['topCategory'] );
         $elements['topLikeProducts'] = $this->productManager->getBestLikedProducts();
+        $elements['cartNbItems']     = $this->cartManagerService->getCartNbItems();
 
         return $elements;
     }

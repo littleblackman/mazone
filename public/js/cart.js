@@ -3,11 +3,17 @@ $('.addToCart').click(function() {
     
     $.ajax({
         url: url,
-        success: function(result){
-
-//            let data = JSON.parse(result);
-            console.log(result);
+        dataType: "json",
+        success: function(datas){
             toastr.success('hello', 'Panier');
+            console.log(datas);
+            let quantity = 0;
+            for(let i = 0; i < datas.length; i++) {
+                quantity += datas[i].quantity;
+            }
+
+            // show cart nb item
+            $('.cartNbItems').text(quantity);
         }
     });
 

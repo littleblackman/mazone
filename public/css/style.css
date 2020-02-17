@@ -8,3 +8,17 @@ h1 { color: red}
 .iconRate {color: #FE980F}
 .cart { margin-left: 0px}
 
+.cartLi { margin-right: 20px;;}
+.cartNbItems {
+    background-color: #FE980F;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    padding-top: 5px;
+    position: absolute;
+    top: -8px;
+    left: 65px
+}

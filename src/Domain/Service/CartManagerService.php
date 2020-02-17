@@ -35,7 +35,7 @@ class CartManagerService extends baseService
         $product = $this->productManager->find($productId);
         $cart = $this->getCart();
         (key_exists($product->getId(), $cart)) ? $quantity = $cart[$product->getId()]['quantity']+1: $quantity = 1;
-        $cart[$product->getId()] = ['quantity' => $quantity, 'product' => $product];
+        $cart[] = ['id' => $productId, 'quantity' => $quantity, 'product' => $product];
         $this->session->set('cart', $cart);
         return $cart;
     }
@@ -44,9 +44,19 @@ class CartManagerService extends baseService
         $cartArray = [];
         $cart = $this->getCart();
         foreach($cart as $productId => $item) {
-            $cartArray[$productId] = ['quantity' => $item['quantity'], 'product' => $item['product']->toArray()];
+            $cartArray[] = ['id' => $productId, 'quantity' => $item['quantity'], 'product' => $item['product']->toArray()];
         }
         return $cartArray;
+    }
+
+    public function getCartNbItems() {
+        $cart = $this->getCart();
+        $quantity = 0;
+        foreach($cart as $item) {
+            $quantity += $item['quantity'];
+        }
+        if($quantity == 0) return null;
+        return $quantity;
     }
 
 }
