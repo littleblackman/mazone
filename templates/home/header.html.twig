@@ -61,10 +61,12 @@
 						<li><a href="#"><i class="fa fa-user"></i>{% trans %}account{% endtrans %}</a></li>
 						<li><a href="#"><i class="fa fa-star"></i>{% trans %}wishlist{% endtrans %}</a></li>
 						<li class="cartLi">
-							<a href="cart.html">
+							<a href="{{path('showCart')}}">
 								<i class="fa fa-shopping-cart"></i>
 								{{ "cart"|trans}}
-								<div class="cartNbItems">{{config.cartNbItems}}</div>
+								{% if config.cartNbItems %}
+									<div class="cartNbItems">{{config.cartNbItems}}</div>
+								{% endif %}
 							</a>
 						</li>
 						<li><a href="login.html"><i class="fa fa-lock"></i>{% trans %}login{% endtrans %}</a></li>

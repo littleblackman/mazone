@@ -76,6 +76,14 @@ class Product extends baseEntity
      */
     private $price;
 
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="reference", type="string", length=250, nullable=true)
+     */
+    private $reference;
+
     /**
     * @var ArrayCollection
     * @ORM\OneToMany(targetEntity="Detail", mappedBy="product", cascade={"remove"}))
@@ -86,7 +94,7 @@ class Product extends baseEntity
 
     /**
     * @var ArrayCollection
-    * @ORM\OneToMany(targetEntity="Photo", mappedBy="product", cascade={"persist","remove"}))
+    * @ORM\OneToMany(targetEntity="Photo", mappedBy="product",  fetch="EAGER" ,cascade={"persist","remove"}))
     */
     private $photos;
 
@@ -292,6 +300,20 @@ class Product extends baseEntity
         return $this;
     }
 
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+
     public function getPrice(): ?float
     {
         return $this->price;
@@ -317,6 +339,7 @@ class Product extends baseEntity
         return $this;
     }
 
+
     public function getPhotos()
     {
         return $this->photos;
@@ -327,12 +350,12 @@ class Product extends baseEntity
     }
 
     public function getFirstPhotoUrl() {
-        $firstPhoto = $this->getFirstPhoto();
+        if(!$firstPhoto = $this->getFirstPhoto()) return null;
         return $firstPhoto->getUrl();
     }
 
     public function getFirstPhotoAlt() {
-        $firstPhoto = $this->getFirstPhoto();
+        if(!$firstPhoto = $this->getFirstPhoto()) return null;
         return $firstPhoto->getAlt();
     }
 

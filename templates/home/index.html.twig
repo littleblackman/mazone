@@ -25,9 +25,10 @@
                                         <h2>{{ product.price}}</h2>
                                         <p>{{ product.name }}</p>
                                     </a>
-                                    <a href="#" class="btn btn-default add-to-cart addToCart" data-url = "{{ path('addToCart', {'productId' : product.id})}}">
-                                        <i class="fa fa-shopping-cart"></i>{{ "addCart"|trans}}
-                                    </a>
+                                    <button type="button" style="background-color: lightgrey" data-url = "{{ path('addToCart', {'productId' : product.id})}}" class="btn btn-fefault cart addToCart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        {{ "addCart"|trans}}
+                                    </button>
                                 </div>
                             </div>
                     </div>
@@ -69,7 +70,10 @@
                                         <img src="{{ pdt.firstPhotoUrl}}" alt="{{ pdt.firstPhotoAlt}}" />
                                         <h2>{{ pdt.price}}</h2>
                                         <p>{{ pdt.name }}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                        <button type="button" style="background-color: lightgrey" data-url = "{{ path('addToCart', {'productId' : pdt.id})}}" class="btn btn-fefault cart addToCart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            {{ "addCart"|trans}}
+                                        </button>
                                     </div>
                                     
                                 </div>
@@ -102,7 +106,10 @@
                                         <img src="{{ pdt.firstPhotoUrl}}" alt="{{ pdt.firstPhotoAlt}}" />
                                         <h2>{{ pdt.price}}</h2>
                                         <p>{{ pdt.name }}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                        <button type="button" style="background-color: lightgrey" data-url = "{{ path('addToCart', {'productId' : pdt.id})}}" class="btn btn-fefault cart addToCart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            {{ "addCart"|trans}}
+                                        </button>
                                     </div>
                                 </div>
                             </div>

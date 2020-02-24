@@ -27,6 +27,10 @@ class CartManagerService extends baseService
         return $cart;
     }
 
+    public function delete() {
+       $this->session->remove('cart'); 
+    }
+
     public function setCart($cart) {
         $this->session->set('cart', $cart);
     }
@@ -34,8 +38,8 @@ class CartManagerService extends baseService
     public function addToCart($productId) {
         $product = $this->productManager->find($productId);
         $cart = $this->getCart();
-        (key_exists($product->getId(), $cart)) ? $quantity = $cart[$product->getId()]['quantity']+1: $quantity = 1;
-        $cart[] = ['id' => $productId, 'quantity' => $quantity, 'product' => $product];
+        (key_exists($product->getId(), $cart)) ? $quantity = $cart[$product->getId()]['quantity']+1 : $quantity = 1;
+        $cart[$product->getId()] = ['id' => $productId, 'quantity' => $quantity, 'product' => $product];
         $this->session->set('cart', $cart);
         return $cart;
     }
@@ -58,5 +62,6 @@ class CartManagerService extends baseService
         if($quantity == 0) return null;
         return $quantity;
     }
+    
 
 }
