@@ -16,7 +16,6 @@
 
     {% if cart is not empty %}
 
-
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
                 <thead>
@@ -29,10 +28,11 @@
                 </thead>
                 <tbody>
                 
-                    {% for item in cart %}
+                    {% for key,item in cart %}
 
+                        {% if key != "total" %}
 
-                            <tr>
+                            <tr class="productLine-{{ key}}">
                                 <td class="" rowspan="2">
                                     <img src="{{ item.product.firstPhotoUrl }}" alt="{{ item.product.firstPhotoAlt }}" style="width: 100px">
                                 </td>
@@ -44,28 +44,49 @@
                                     </a>
                                 </td>
                                 <td class="cart_price" style="text-align: right">
-                                    <p>{{item.product.price}} €</p>
+                                    <p><span id="showProductUnitPrice-{{key}}">{{item.product.price}}</span> €</p>
                                 </td>
                                 <td class="cart_total" style="text-align: right">
-                                    <p class="cart_total_price">{{item.product.price * item.quantity }} €</p>
+                                    <p class="cart_total_price"><span id="showProductTotalPrice-{{key}}">{{item.product.price * item.quantity }}</span> €</p>
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="productLine-{{ key}}">
                                 <td colspan="3">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="{{ item.quantity }}" autocomplete="off" size="2">
-                                        <a class="cart_quantity_up" href=""> + </a>
+                                        <a  data-url = "{{ path('removeFromCart', {'productId' : key})}}"
+                                            data-productId="{{ key }}" 
+                                            class="cart_quantity_down removeFromCart" href="#"> - </a>
+
+                                        <input class="cart_quantity_input" type="text" name="quantity" value="{{ item.quantity }}" id="inputQuantityProduct-{{ key}}" autocomplete="off" size="2">
+                                        
+                                        <a  data-url = "{{ path('addToCart', {'productId' : key})}}"
+                                            data-productId="{{ key }}" 
+                                            class="cart_quantity_up addToCart" href="#"> + </a>
                                     </div>
 
                                     <div class="cart_delete" style="float: right; margin-right: 20px">
-                                        <a class="cart_quantity_delete" href="" title="Retirer du panier"><i class="fa fa-times"></i></a>
+                                        <a data-productId="{{ key }}" class="cart_quantity_delete" href="" title="Retirer du panier"><i class="fa fa-times"></i></a>
                                     </div>
                                 </td>
                             </tr>
+                        {% endif %}
 
                     {% endfor %}
+
+                    <thead>
+                        <tr>
+                            <td/>
+                            <td colspan="3">
+                                <p style="text-align: right">
+                                    <b>TOTAL : </b>
+                                    <span id="totalPrice" class="cart_total_price">
+                                        <span id="totalPriceValue">{{ cart.total }}</span> €
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                    </thead>
 
                 </tbody>
             </table>
@@ -86,11 +107,15 @@
     </div>
     <div class="row">
         <div class="col-sm-6" style="text-align: center">
-            <a class="btn btn-default check_out" href="{{ path('deleteCart')}}" style="background-color: lightgrey">Videz votre panier</a>
+            <a id="deleteCartButton" class="btn btn-default check_out" href="{{ path('deleteCart')}}" style="background-color: lightgrey">Videz votre panier</a>
         </div>
         <div class="col-sm-6" style="text-align: center;">
             <a class="btn btn-default check_out" href="">Commandez maintenant</a>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/cart.js') }}"></script>
 {% endblock %}

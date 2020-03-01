@@ -31,7 +31,7 @@ class ShowAction implements ShowActionInterface
     {
         $cart = $this->cartManagerService->getCart();
         $config = $this->shopConfigurationService->retrieveMenuElements();
-       
+
         return $this->responder->render('cart/show.html.twig', ['cart' => $cart, 'config' => $config]);
 
 

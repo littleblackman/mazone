@@ -4,22 +4,15 @@ declare(strict_types=1);
 
 namespace App\Responder\Cart;
 
-use App\Domain\Service\CartManagerService;
+use App\Domain\Entity\Product;
 use App\Responder\Cart\Interfaces\AddResponderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AddResponder implements AddResponderInterface
 {
 
-    private $cartManagerService;
-
-    public function __construct(CartManagerService $cartManagerService){
-        $this->cartManagerService = $cartManagerService;
-    }
-
-    public function render($cart): JsonResponse
+    public function render($product): JsonResponse
     {
-        $cartArray = $this->cartManagerService->toArray();
-        return new JsonResponse($cartArray);
+        return new JsonResponse($product->toArray());
     }
 }

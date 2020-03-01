@@ -38,10 +38,49 @@ class CartManagerService extends baseService
     public function addToCart($productId) {
         $product = $this->productManager->find($productId);
         $cart = $this->getCart();
+        
         (key_exists($product->getId(), $cart)) ? $quantity = $cart[$product->getId()]['quantity']+1 : $quantity = 1;
+        
         $cart[$product->getId()] = ['id' => $productId, 'quantity' => $quantity, 'product' => $product];
+        
+        if(!isset($cart['total'])) $cart['total'] = 0;
+
+        $cart['total'] += $product->getPrice();
+
         $this->session->set('cart', $cart);
+        
         return $cart;
+    }
+
+    public function removeFromCart($productId) {
+        $product = $this->productManager->find($productId);
+
+        $cart = $this->getCart();
+        if(!key_exists($product->getId(), $cart)) return ['message' => 'this product is not in your cart'];
+        
+        $quantity = $cart[$product->getId()]['quantity'];
+
+        $quantity--;
+
+
+        if($quantity < 1) {
+            unset($cart[$product->getId()]);
+        } else {
+            $cart[$product->getId()]['quantity'] = $quantity;
+        }
+
+        $cart['total'] -= $product->getPrice();
+
+        if($cart['total'] <= 0) {
+            $this->delete();
+            $message = ['message' => 'your cart is empty'];
+        } else {
+            $this->session->set('cart', $cart);
+            $message = ['message' => 'this product has been removed'];
+        }
+
+        return $message;
+
     }
 
     public function toArray() {

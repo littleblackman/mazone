@@ -65,8 +65,11 @@
 								<i class="fa fa-shopping-cart"></i>
 								{{ "cart"|trans}}
 								{% if config.cartNbItems %}
-									<div class="cartNbItems">{{config.cartNbItems}}</div>
+									{% set display = "display: block" %}
+								{% else %}
+									{% set display = "display: none" %}
 								{% endif %}
+								<div id="cartNbItems" style="{{ display }}">{{config.cartNbItems}}</div>
 							</a>
 						</li>
 						<li><a href="login.html"><i class="fa fa-lock"></i>{% trans %}login{% endtrans %}</a></li>

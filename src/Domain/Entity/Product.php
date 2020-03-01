@@ -346,6 +346,7 @@ class Product extends baseEntity
     }
 
     public function getFirstPhoto() {
+        if(!isset($this->photos[0])) return null;
         return $this->photos[0];
     }
 

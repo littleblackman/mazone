@@ -6,7 +6,7 @@ namespace App\Responder\Cart\Interfaces;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-interface AddResponderInterface
+interface RemoveResponderInterface
 {
-    public function render(array $productArray): JsonResponse;
+    public function render(array $data): JsonResponse;
 }
