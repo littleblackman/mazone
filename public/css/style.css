@@ -1,9 +1,14 @@
 h1 { color: red}
+.flag-icon { width: 20px; height: 20px;}
+
+
+/***** products *****/
 
 .product-details-img { text-align: center;}
 .product-details-img img { width: 80px;}
 
-.flag-icon { width: 20px; height: 20px;}
+
+/****** CART ELEMENTS ******/
 
 .iconRate {color: #FE980F}
 .cart { margin-left: 0px}
@@ -24,3 +29,7 @@ h1 { color: red}
 }
 
 #totalPrice { margin-left: 30px}
+
+
+/*** LOGIN PAGE *****/
+#loginPage { margin-bottom: 30px;}
