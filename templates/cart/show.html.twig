@@ -107,10 +107,10 @@
     </div>
     <div class="row">
         <div class="col-sm-6" style="text-align: center">
-            <a id="deleteCartButton" class="btn btn-default check_out" href="{{ path('deleteCart')}}" style="background-color: lightgrey">Videz votre panier</a>
+            <a class="btn btn-default check_out" href="{{ path('home')}}" style="background-color: lightgrey">Continuez vos achats</a>
         </div>
         <div class="col-sm-6" style="text-align: center;">
-            <a class="btn btn-default check_out" href="">Commandez maintenant</a>
+            <a class="btn btn-default check_out" href="{{ path('shopDelivery')}}">Commandez maintenant</a>
         </div>
     </div>
 </section>

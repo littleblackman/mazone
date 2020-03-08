@@ -1,0 +1,41 @@
+<div class="header-bottom"><!--header-bottom-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="mainmenu pull-left">
+					<ul class="nav navbar-nav collapse navbar-collapse">
+						<li><a href="{{ path('home')}}" class="active">{{ "home"|trans }}</a></li>
+						<li class="dropdown"><a href="#">{% trans %}shop{% endtrans %}<i class="fa fa-angle-down"></i></a>
+							<ul role="menu" class="sub-menu">
+
+								{% for item in config.menuItems %}
+									<li><a href="{{ path('listCategory', {slug: item.slug})}}">{{item.name}}</a></li> 
+								{% endfor %} 
+							</ul>
+						</li> 
+						<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+							<ul role="menu" class="sub-menu">
+								<li><a href="blog.html">Autour de vous</a></li>
+								<li><a href="blog-single.html">Les produits à venir</a></li>
+							</ul>
+						</li> 
+						<li><a href="contact-us.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="search_box pull-right">
+					<input type="text" placeholder="{% trans %}search{% endtrans %}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,7 +6,7 @@ namespace App\Action\Cart;
 
 use App\Action\Cart\Interfaces\DeleteActionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Domain\Service\CartManagerService;
+use App\Service\CartManagerService;
 use App\Responder\Cart\Interfaces\DeleteResponderInterface;
 
 

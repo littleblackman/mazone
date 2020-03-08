@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Service;
+namespace App\Service;
 
 use App\Domain\Model\CategoryManager;
 use App\Domain\Model\ProductManager;
-use App\Domain\Service\CartManagerService;
+use App\Service\CartManagerService;
 
 /**
  * Class used to manager all the shop application

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Action\Category;
 
 use App\Action\Category\Interfaces\ListActionInterface;
-use App\Domain\Service\ShopConfigurationService;
+use App\Service\ShopConfigurationService;
 use App\Responder\Category\Interfaces\ListResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Model\ProductManager;

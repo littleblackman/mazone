@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Service;
+namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -19,7 +19,7 @@ abstract class baseService
     public function __construct() {
 
         $session = new Session();
-        $session->start();
+        if($session->isStarted()) $session->start();
         $this->session = $session;
     }
 }

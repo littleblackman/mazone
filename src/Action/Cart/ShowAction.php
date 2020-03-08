@@ -6,9 +6,9 @@ namespace App\Action\Cart;
 
 use App\Action\Cart\Interfaces\ShowActionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Domain\Service\CartManagerService;
+use App\Service\CartManagerService;
 use App\Responder\Cart\Interfaces\ShowResponderInterface;
-use App\Domain\Service\ShopConfigurationService;
+use App\Service\ShopConfigurationService;
 
 
 /**

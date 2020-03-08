@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Action\Security;
 
 use App\Action\Security\Interfaces\LoginActionInterface;
-use App\Domain\Service\ShopConfigurationService;
+use App\Service\ShopConfigurationService;
 use App\Responder\Security\Interfaces\LoginResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;

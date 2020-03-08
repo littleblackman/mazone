@@ -6,7 +6,7 @@ namespace App\Action\Product;
 
 use App\Action\Product\Interfaces\ShowActionInterface;
 use App\Domain\Model\ProductManager;
-use App\Domain\Service\ShopConfigurationService;
+use App\Service\ShopConfigurationService;
 use App\Responder\Product\Interfaces\ShowResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
