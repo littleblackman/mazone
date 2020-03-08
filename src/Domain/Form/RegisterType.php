@@ -4,6 +4,7 @@ namespace App\Domain\Form;
 
 use App\Domain\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -15,13 +16,14 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('email', EmailType::class)
+            ->add('firstname', TextType::class, ['label' => 'Prénom', 'attr' => ['class' => 'form-control']])
+            ->add('lastname', TextType::class, ['label' => 'Nom','attr' => ['class' => 'form-control']])
+            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer mot de passe'],
+                'options' => ['attr' => ['class' => 'form-control']]
             ]);
     }
 

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Domain\Entity;
+use Symfony\Component\Form\Forms;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Class baseEntity
@@ -10,6 +13,8 @@ namespace App\Domain\Entity;
  */
 abstract class baseEntity
 {
+    protected $formFactory;
+    protected $request;
 
     public function getName() {
         return $this->getNameFr();
@@ -22,5 +27,12 @@ abstract class baseEntity
     public function getInformation() {
         return $this->getInformationFr();
     }
+
+    public function initForm()
+    {
+        $this->formFactory = Forms::createFormFactory();
+        $this->request = Request::createFromGlobals();       
+    }
+
 
 }

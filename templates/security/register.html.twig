@@ -1,0 +1,39 @@
+{% extends 'login.html.twig' %}
+
+{% block title %}Connectez-vous à AZMA{% endblock %}
+
+{% block cover %} {% endblock %}
+
+ {% block left_side_bar %} {% endblock %}
+
+
+{% block main_container %}
+
+<!--- login !-->
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+
+        <h1 class="h3 mb-3 font-weight-normal">Créer votre profil</h1>
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email, {'label': 'Email'}) }}
+        {{ form_row(form.password.first) }}
+        {{ form_row(form.password.second) }}
+        <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+        {{ form_end(form) }}
+    </div>
+    <div class="col-sm-3"></div>
+    </div>
+
+
+    <p class="centered">
+        Si vous avez déjà un compte, connectez-vous
+        <a href="{{ path('login')}}">en cliquant ici</a>
+    </p>
+
+
+{% endblock %}
