@@ -22,14 +22,19 @@ class RegisterService extends baseEntity
 
         $user = new User();
         $form = $this->formFactory->create(RegisterType::class, $user);
-        $form->handlerequest($this->request);
+        $form->handleRequest($this->request);
+
+        if($this->request->isMethod('POST')) {
+            $user = $this->register($form);
+            return $user;
+        }
+
         return $form;
     }
 
-    public function register($request) {
-
+    /*
+    public function register($form) {
         
-        $form->handleRequest($this->request);
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $this->passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
@@ -41,5 +46,7 @@ class RegisterService extends baseEntity
             $this->addFlash('success', 'Votre compte à bien été enregistré !');
         }
 
-    }
+        return ['message' => 'user is persisted'];
+
+    }*/
 }

@@ -10,8 +10,6 @@ use App\Responder\Security\Interfaces\LoginResponderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Security\RegisterService;
 
-
-
 /**
  * @Route(path="/creer-son-profil", name="register")
  */
@@ -33,8 +31,10 @@ class RegisterAction implements RegisterActionInterface
     public function __invoke()
     {
         $config = $this->shopConfigurationService->retrieveMenuElements();
-        $form = $this->registerService->createUserForm();
 
+        $this->registerService->createUserForm();
+      
+/*
         if ($form->isSubmitted() && $form->isValid()) {
             $this->registerService->submitForm($form);
             return $this->responder->render('login');
@@ -42,6 +42,6 @@ class RegisterAction implements RegisterActionInterface
         return $this->responder->render('security/register.html.twig', [
                                                                    'config'  => $config,
                                                                    'form' => $form->createView(),
-                                                                ]);
+                                                                ]);*/
     }
 }

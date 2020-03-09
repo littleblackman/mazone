@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a37f36e8375977239029192dc492a97",
+    "content-hash": "1a8633475241cc404d2bc562a4d168c0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1924,6 +1924,64 @@
             "time": "2019-12-27T08:57:19+00:00"
         },
         {
+            "name": "solidworx/form-handler-bundle",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SolidWorx/FormHandlerBundle.git",
+                "reference": "bf75da545dac7a3c27fee86fb313b7399f2263d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SolidWorx/FormHandlerBundle/zipball/bf75da545dac7a3c27fee86fb313b7399f2263d3",
+                "reference": "bf75da545dac7a3c27fee86fb313b7399f2263d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "symfony/event-dispatcher": "^4.0 || ^5.0",
+                "symfony/form": "^4.0 || ^5.0",
+                "symfony/framework-bundle": "^4.0 || ^5.0",
+                "symfony/http-foundation": "^4.0 || ^5.0",
+                "symfony/options-resolver": "^4.0 || ^5.0"
+            },
+            "require-dev": {
+                "doctrine/common": "^2.7",
+                "ocramius/proxy-manager": "^2.1",
+                "phpstan/phpstan": "^0.12.8",
+                "symfony/phpunit-bridge": "^5.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SolidWorx\\FormHandler\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre du Plessis",
+                    "email": "open-source@solidworx.co.za"
+                }
+            ],
+            "description": "Easy form handling for Symfony forms",
+            "keywords": [
+                "form handling",
+                "symfony",
+                "symfony forms",
+                "symfony-bundle"
+            ],
+            "time": "2020-02-04T07:05:57+00:00"
+        },
+        {
             "name": "symfony/asset",
             "version": "v5.0.4",
             "source": {
@@ -2258,16 +2316,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v5.0.4",
+            "version": "v5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "86338f459313525dd95f5a012f8a9ea118002f94"
+                "reference": "3575004a9b0d51ead83473ec90121045b3a0b56f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/86338f459313525dd95f5a012f8a9ea118002f94",
-                "reference": "86338f459313525dd95f5a012f8a9ea118002f94",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/3575004a9b0d51ead83473ec90121045b3a0b56f",
+                "reference": "3575004a9b0d51ead83473ec90121045b3a0b56f",
                 "shasum": ""
             },
             "require": {
@@ -2327,7 +2385,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-31T09:49:43+00:00"
+            "time": "2020-02-24T15:05:31+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",

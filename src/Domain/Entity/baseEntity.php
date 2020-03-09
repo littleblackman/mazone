@@ -5,6 +5,7 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 
 
+
 /**
  * Class baseEntity
  * Add commons methods to all entities
@@ -31,7 +32,8 @@ abstract class baseEntity
     public function initForm()
     {
         $this->formFactory = Forms::createFormFactory();
-        $this->request = Request::createFromGlobals();       
+        $this->request = Request::createFromGlobals();   
+
     }
 
 

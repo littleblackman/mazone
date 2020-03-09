@@ -9,7 +9,12 @@
 /vendor/
 /tests/
 /data/
+/bin/
 ###< symfony/framework-bundle ###
+
+symfony.lock
+ezone.code-workspace
+.vscode
 
 ###> symfony/phpunit-bridge ###
 .phpunit
