@@ -18,6 +18,7 @@ ezone.code-workspace
 .env.test
 .env
 phpunit.xml.dist
+.gitignore
 ###> symfony/phpunit-bridge ###
 .phpunit
 .phpunit.result.cache
