@@ -15,7 +15,9 @@
 symfony.lock
 ezone.code-workspace
 .vscode
-
+.env.test
+.env
+phpunit.xml.dist
 ###> symfony/phpunit-bridge ###
 .phpunit
 .phpunit.result.cache
